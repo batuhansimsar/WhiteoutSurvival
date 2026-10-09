@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  --font-display: var(--font-oswald), 'Oswald', Impact, sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+/* Palette: glacier night, frost white, ice blue, furnace amber */
+:root {
+  color-scheme: dark;
+  --background: oklch(0.17 0.035 250);
+  --foreground: oklch(0.96 0.01 230);
+  --card: oklch(0.22 0.04 248);
+  --card-foreground: oklch(0.96 0.01 230);
+  --popover: oklch(0.22 0.04 248);
+  --popover-foreground: oklch(0.96 0.01 230);
+  --primary: oklch(0.78 0.16 62);
+  --primary-foreground: oklch(0.17 0.035 250);
+  --secondary: oklch(0.27 0.045 245);
+  --secondary-foreground: oklch(0.96 0.01 230);
+  --muted: oklch(0.27 0.045 245);
+  --muted-foreground: oklch(0.76 0.05 230);
+  --accent: oklch(0.82 0.08 220);
+  --accent-foreground: oklch(0.17 0.035 250);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.82 0.08 220 / 18%);
+  --input: oklch(0.82 0.08 220 / 22%);
+  --ring: oklch(0.78 0.16 62);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@keyframes snowfall {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 120px 600px, -80px 400px;
+  }
+}
+
+.snow {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, oklch(0.96 0.01 230 / 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 90px 120px, oklch(0.96 0.01 230 / 0.6), transparent),
+    radial-gradient(2.5px 2.5px at 160px 60px, oklch(0.96 0.01 230 / 0.7), transparent),
+    radial-gradient(1px 1px at 60px 180px, oklch(0.96 0.01 230 / 0.5), transparent);
+  background-size: 200px 200px, 260px 260px;
+  animation: snowfall 18s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
